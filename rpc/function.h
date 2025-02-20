@@ -74,11 +74,11 @@ namespace melon
     template <typename R, typename... Args>
     void Function::wrap_impl(R(*func)(Args...), DataStream& in, DataStream& out)
     {
-      wrap_impl(std::function<R(Args...)>, in, out);
+      wrap_impl(std::function<R(Args...)>(func), in, out);
     }
 
     template <typename R, typename... Args>
-    void wrap_impl(std::function<R(Args...)> func, DataStream& in, DataStream& out)
+    void Function::wrap_impl(std::function<R(Args...)> func, DataStream& in, DataStream& out)
     {
       // define a alias for a tuple type
       using args_type = std::tuple<typename std::decay<Args>::type...>;
@@ -121,7 +121,7 @@ namespace melon
     // If R isn't void type, then the return type of call_impl is R
     template<typename R, typename F, typename Tuple>
     typename std::enable_if<!std::is_same<R, void>::value, R>::type
-    Function::call_impl(F func, Tuple args);
+    Function::call_impl(F func, Tuple args)
     {
       return invoke<R>(func, args);
     }

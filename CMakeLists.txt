@@ -10,4 +10,4 @@ include_directories(./)
 
 file(GLOB_RECURSE SOURCES "serialize/*.cpp")
 
-add_executable(main ${SOURCES} "main.cpp")
+add_executable(function_test ${SOURCES} "function_test.cpp")
