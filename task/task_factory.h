@@ -1,6 +1,6 @@
 #pragma once
 
-#include "task/echo_task.h"
+#include "task/work_task.h"
 using namespace melon::task;
 
 namespace melon
@@ -12,7 +12,7 @@ namespace melon
     public:
       static Task* create(int socket_fd)
       {
-        return new EchoTask(socket_fd);
+        return new WorkTask(socket_fd);
       }
     };
   }
